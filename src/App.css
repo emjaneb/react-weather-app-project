@@ -1,0 +1,14 @@
+.App {
+  padding: 70px 0;
+  background-color: #afd8d0;
+}
+
+.App footer {
+  text-align: center;
+  margin: 30px 0 0 0;
+  font-size: 14px;
+}
+
+.App a {
+  font-weight: 500;
+}

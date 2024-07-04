@@ -1,8 +1,70 @@
-.Weather {
-  border: 1px solid #000000;
-  border-radius: 10px;
+.Weather ul {
+  padding: 0;
+  margin-top: 35px;
 }
 
 .Weather li {
+  font-size: 17px;
   list-style-type: none;
+}
+
+.Weather {
+  box-shadow: 0 0 15px #678983;
+  padding: 20px;
+  border-radius: 20px;
+  margin: 0 auto;
+  max-width: 700px;
+  text-align: center;
+  background-color: #f7fbfa;
+}
+
+.Weather .city {
+  font-size: 45px;
+}
+
+.Weather .day-time {
+  font-size: 15px;
+}
+
+.Weather .temperature {
+  font-size: 60px;
+}
+
+.Weather .celsius,
+.Weather .fahrenheit,
+.Weather .break {
+  font-size: 15px;
+  padding: 5px;
+  font-weight: 600;
+  position: relative;
+  bottom: 30px;
+}
+
+.Weather .description {
+  font-weight: 500;
+  line-height: 35px;
+  font-size: 20px;
+}
+
+.Weather .current-weather {
+  margin: 20px 0;
+}
+
+.Weather .current-img,
+.Weather .current-temp {
+  display: inline-block;
+}
+
+.Weather .current-img {
+  width: 150px;
+  filter: drop-shadow(0 0 0.75rem rgb(130, 130, 130));
+}
+
+.Weather .current-temp {
+  position: relative;
+  top: 18px;
+}
+
+.Weather .title {
+  font-weight: 600;
 }

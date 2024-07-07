@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import "./Weather.css";
-import FormattedDate from "./FormattedDate";
+import WeatherInfo from "./WeatherInfo";
 import axios from "axios";
 
 export default function Weather(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
+  const [city, setCity] = useState(props.defaultCity);
+
   function handleResponse(response) {
     setWeatherData({
       ready: true,
@@ -18,10 +20,25 @@ export default function Weather(props) {
     });
   }
 
+  function handleSubmit(event) {
+    event.preventDefault();
+    search();
+  }
+
+  function handleCityChange(event) {
+    setCity(event.target.value);
+  }
+
+  function search() {
+    const apiKey = "a6946fa02tb383o83fefbda1f7e7863a";
+    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(handleResponse);
+  }
+
   if (weatherData.ready) {
     return (
       <div className="Weather">
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="row">
             <div className="col-8">
               <input
@@ -29,6 +46,7 @@ export default function Weather(props) {
                 placeholder="Enter a city..."
                 className="form-control"
                 autoFocus="on"
+                onChange={handleCityChange}
               />
             </div>
             <div className="col-4">
@@ -40,52 +58,11 @@ export default function Weather(props) {
             </div>
           </div>
         </form>
-        <div className="city">{weatherData.city}</div>
-        <FormattedDate date={weatherData.date} />
-        <div className="description text-capitalize">
-          {weatherData.description}
-        </div>
-
-        <div className="current-weather">
-          <div className="row">
-            <div className="col-6">
-              <div className="current-container">
-                <img
-                  src={weatherData.currentIcon}
-                  alt={weatherData.description}
-                  className="current-img"
-                />
-                <div className="current-temp">
-                  <span className="temperature">
-                    {Math.round(weatherData.temperature)}
-                  </span>
-                  <span className="celsius">°C</span>
-                  <span className="break">|</span>
-                  <span className="fahrenheit ">F</span>
-                </div>
-              </div>
-            </div>
-            <div className="col-6">
-              <ul>
-                <li>
-                  <span className="title">Humidity:</span>{" "}
-                  {weatherData.humidity}%
-                </li>
-                <li>
-                  <span className="title">Wind:</span>{" "}
-                  {Math.round(weatherData.wind)}km/h
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
+        <WeatherInfo data={weatherData} />
       </div>
     );
   } else {
-    const apiKey = "a6946fa02tb383o83fefbda1f7e7863a";
-    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${props.defaultCity}&key=${apiKey}&units=metric`;
-    axios.get(apiUrl).then(handleResponse);
-
+    search();
     return "Loading...";
   }
 }

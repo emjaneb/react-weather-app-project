@@ -1,6 +1,6 @@
 .Weather ul {
   padding: 0;
-  margin-top: 35px;
+  margin-top: 14px;
 }
 
 .Weather li {
@@ -38,13 +38,13 @@
 }
 
 .Weather .temperature {
-  font-size: 60px;
+  font-size: 62px;
 }
 
 .Weather .celsius,
 .Weather .fahrenheit,
 .Weather .break {
-  font-size: 15px;
+  font-size: 16px;
   padding: 5px;
   font-weight: 600;
   position: relative;
@@ -61,19 +61,15 @@
   margin: 20px 0;
 }
 
-.Weather .current-img,
+.Weather .canvas,
 .Weather .current-temp {
   display: inline-block;
 }
 
-.Weather .current-img {
-  width: 150px;
-  filter: drop-shadow(0 0 0.75rem rgb(130, 130, 130));
-}
-
 .Weather .current-temp {
   position: relative;
-  top: 18px;
+  bottom: 18px;
+  left: 20px;
 }
 
 .Weather .title {
